@@ -8,7 +8,6 @@ class NoteInput extends React.Component {
     this.state = {
       title: "",
       body: "",
-      // createdAt: showFormattedDate(),
     };
 
     this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this);
@@ -39,21 +38,24 @@ class NoteInput extends React.Component {
 
   render() {
     return (
-      <form className="note-input" onSubmit={this.onSubmitEventHandler}>
-        <input
-          type="text"
-          placeholder="Ini adalah judul..."
-          value={this.state.title}
-          onChange={this.onTitleChangeEventHandler}
-        />
-        <input
-          type="text"
-          placeholder="Tuliskan catatanmu disini..."
-          value={this.state.body}
-          onChange={this.onBodyChangeEventHandler}
-        />
-        <button type="submit">Buat</button>
-      </form>
+      <div className="note-input">
+        <h2>Buat Catatan</h2>
+        <form onSubmit={this.onSubmitEventHandler}>
+          <input
+            type="text"
+            placeholder="Ini adalah judul..."
+            value={this.state.title}
+            onChange={this.onTitleChangeEventHandler}
+          />
+          <input
+            type="text"
+            placeholder="Tuliskan catatanmu disini..."
+            value={this.state.body}
+            onChange={this.onBodyChangeEventHandler}
+          />
+          <button type="submit">Buat</button>
+        </form>
+      </div>
     );
   }
 }

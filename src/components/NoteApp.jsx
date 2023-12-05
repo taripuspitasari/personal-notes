@@ -28,6 +28,7 @@ class NoteApp extends React.Component {
             id: +new Date(),
             title,
             body,
+            createdAt: new Date().toISOString(),
           },
         ],
       };
@@ -38,10 +39,13 @@ class NoteApp extends React.Component {
     return (
       <div className="note-app__body">
         <h1 className="note-app__header">Notes</h1>
-        <h2>Buat Catatan</h2>
         <NoteInput addNote={this.onAddNoteHandler} />
         <h2>Catatan Aktif</h2>
-        <NoteList notes={this.state.notes} onDelete={this.onDeleteHandler} />
+        {this.state.notes.length !== 0 ? (
+          <NoteList notes={this.state.notes} onDelete={this.onDeleteHandler} />
+        ) : (
+          <h1 className="notes-list__empty-message">Tidak ada catatan</h1>
+        )}
       </div>
     );
   }
