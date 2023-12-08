@@ -18,7 +18,7 @@ function NoteList({notes, onDelete, onArchive}) {
               onArchive={onArchive}
               {...note}
             />
-          ))}{" "}
+          ))}
         </div>
       ) : (
         <div>
@@ -36,7 +36,7 @@ function NoteList({notes, onDelete, onArchive}) {
               onArchive={onArchive}
               {...note}
             />
-          ))}{" "}
+          ))}
         </div>
       ) : (
         <div>

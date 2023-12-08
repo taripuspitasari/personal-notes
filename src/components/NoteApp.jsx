@@ -2,17 +2,28 @@ import React from "react";
 import NoteList from "./NoteList";
 import {getInitialData} from "../utils/index";
 import NoteInput from "./NoteInput";
+import SearchBar from "./SearchBar";
 
 class NoteApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       notes: getInitialData(),
+      title: "",
     };
 
+    this.onSearchHandler = this.onSearchHandler.bind(this);
     this.onDeleteHandler = this.onDeleteHandler.bind(this);
     this.onArchiveHandler = this.onArchiveHandler.bind(this);
     this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
+  }
+
+  onSearchHandler({search}) {
+    this.setState(() => {
+      return {
+        title: search,
+      };
+    });
   }
 
   onDeleteHandler(id) {
@@ -45,12 +56,19 @@ class NoteApp extends React.Component {
   }
 
   render() {
+    const searchNote = this.state.notes.filter(note =>
+      note.title.toLowerCase().includes(this.state.title.toLowerCase())
+    );
     return (
       <div className="note-app__body">
-        <h1 className="note-app__header">Notes</h1>
+        <div className="note-app__header">
+          <h1>Notes</h1>
+          <SearchBar addSearch={this.onSearchHandler} />
+        </div>
+
         <NoteInput addNote={this.onAddNoteHandler} />
         <NoteList
-          notes={this.state.notes}
+          notes={searchNote}
           onDelete={this.onDeleteHandler}
           onArchive={this.onArchiveHandler}
         />
